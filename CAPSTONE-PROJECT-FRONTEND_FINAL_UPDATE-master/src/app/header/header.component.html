@@ -1,0 +1,31 @@
+<nav class="mat-toolbar mat-primary header">
+  <div class="container">
+      <a class="navbar-brand" routerLink="/homepage">
+        <img class="logo" src="../../assets/WorkFloLogo1-removebg-preview.png" alt="/assets/Kanban-icon.png">
+      </a>
+
+      <div *ngIf="DeskTopView" id="icon" class="detailPanel">        
+        <div *ngIf="currentUser">
+          <span *ngIf="!isBoardViewVisible" (click)="openBoardView()" matTooltip="Board-View"><i class="material-icons logoutIcon">note</i></span>
+
+          <span class="logoutIcon" matTooltip="Log out" (click)="logOut()"><i class="fa fa-sign-out"></i></span>
+          <span  matTooltip="User"><i class="fa fa-solid fa-user"></i></span>
+          {{loggedUser}}
+        </div>
+      </div>
+      <button class="menuButton" *ngIf="!DeskTopView&&currentUser"  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle navigation">
+          <mat-icon >menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngIf="currentUser&&!isBoardViewVisible" (click)="openBoardView()">
+            <mat-icon matTooltip="User">note</mat-icon> BoardView
+        </button>
+             <button mat-menu-item *ngIf="currentUser"  (click)="logOut()">
+              <mat-icon matTooltip="Log out">power_settings_new</mat-icon> Logout
+          </button>
+          <button mat-menu-item *ngIf="currentUser">
+              <mat-icon matTooltip="User">person</mat-icon> {{loggedUser}} 
+          </button>
+      </mat-menu>
+  </div>
+</nav>

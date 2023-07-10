@@ -1,0 +1,238 @@
+<ngx-ui-loader
+fgsColor="#00ACC1" text="Hold On!!"
+pbColor="#00ACC1">
+</ngx-ui-loader>
+<mat-sidenav-container class="example-container-nav">
+
+  <!-- Side toggle nav-bar -->
+
+  <mat-sidenav #sidenav mode="side" opened id="side-nav">
+
+    <button mat-raised-button (click)="projectWindow()" class="btn"><mat-icon>add_box</mat-icon>Create
+      Project</button>
+
+    <button *ngIf="showAddTask" mat-raised-button (click)="taskWindow()" class="btn"> <mat-icon id="tsk">assignment</mat-icon>Add
+      Task</button>
+    <div class="firstCard">
+      <button mat-raised-button class="btn" (click)="showList()"><mat-icon>list</mat-icon>List of Projects</button>
+      <div class="projectList" *ngFor="let project of projectList.projectList" id="list">
+        <div class="projectButton" (click)="boardView(project)" [ngClass]="selectedProject(project)" *ngIf="showL">
+          <div class="fixedWidth">
+            {{project.split("-->")[0]}}
+          </div>
+          <div class="editIcon">
+            <mat-icon (click)="deleteProject(project)" class="deleteIcon">delete</mat-icon>
+          </div>
+          <div class="editIcon">
+            <mat-icon *ngIf="editEnable(project)" (click)="editProject(project)" class="deleteIcon">create</mat-icon>
+          </div>
+        </div>
+        
+      </div>      
+    </div>
+
+  </mat-sidenav>
+
+  <!-- Main Task Board -->
+  <mat-sidenav-content>
+    <div class="nav">
+      <input type="checkbox" id="nav-check">
+      <div class="nav-header">
+        <button mat-icon-button (click)="toggleSidenav()" class="navT"><mat-icon>menu</mat-icon></button>
+        <div class="nav-title">
+          <mat-form-field class="example-form-field" appearance="outline">
+            <span id="icon"><mat-icon>search</mat-icon></span>
+            <input id="search" matInput type="text" spellcheck="false" (input)="search()" [(ngModel)]="searchText"
+              placeholder="Search...">
+            <button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (keyup)="clearSearch()"
+              (click)="clearSearch()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div *ngIf="DeskTopView">
+
+        <button mat-icon-button (click)="sortName()" matTooltip="Sort by Name" class="icn"><i
+            class="fa fa-sort-alpha-asc" style="font-size:18px;"></i></button>
+        <button mat-icon-button (click)="sortPriority()" matTooltip="Sort by Priority" class="icn"><img
+            src="../../assets/Arrow.png"></button>
+        <button mat-icon-button (click)="sortDeadline()" matTooltip="Sort by Deadline" class="icn"><i
+            class="fa fa-calendar" style="font-size:18px;"></i></button>
+
+        <button mat-button [matMenuTriggerFor]="menu" class="icn" (click)="getNotification()"><i
+            matBadge="{{notificationSize}}" matBadgeSize="medium" matBadgeColor="accent" class="fa fa-bell"
+            style="font-size:22px;" matTooltip="Notification"></i></button>
+        <mat-menu #menu="matMenu">
+          <div class="notification">
+            <button class="noti" mat-menu-item (click)="readAll()">Read All</button>
+            <button mat-menu-item *ngFor="let msg of notificationArray" (click)="readMsg(msg[0])"
+              [ngClass]="seenUnseen(msg[1])">
+              <p>{{msg[0].split("-->")[0]}}</p>
+            </button>
+          </div>
+        </mat-menu>
+        <button mat-button class="icn" (click)="download()" matTooltip="Download Board"><i class="fa fa-download"
+            style="font-size:22px;"></i></button>
+        <button mat-button class="icn" (click)="addColumn()" matTooltip="Add new Column"><i class="fa fa-plus"
+            style="font-size:22px;"></i></button>
+        <button mat-button class="icn" (click)="shareBoard()" matTooltip="Share Board"><i class="fa fa-share"
+            style="font-size:22px;"></i></button>
+        <button *ngIf="!taskArchive" mat-button class="icn" (click)="toggleArchive()" matTooltip="Open Archive"><i
+            class="fa fa-folder-open" style="font-size:22px;"></i></button>
+        <button *ngIf="taskArchive" mat-button class="icn" (click)="toggleArchive()" matTooltip="Close Archive"><i
+            class="fa fa-folder" style="font-size:22px;"></i></button>
+
+
+      </div>
+
+      <button *ngIf="!DeskTopView" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle navigation">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+
+        <button mat-menu-item (click)="sortName()" matTooltip="Sort by Name" class="icn">
+          <i class="fa fa-sort-alpha-asc" style="font-size:18px;"></i>
+        </button>
+        <button mat-menu-item (click)="sortPriority()" matTooltip="Sort by Priority" class="icn">
+          <img style="height:24px!important; width:24px!important" src="../../assets/Arrow.png">
+        </button>
+        <button mat-menu-item (click)="sortDeadline()" matTooltip="Sort by Deadline" class="icn">
+          <i class="fa fa-calendar" style="font-size:18px;"></i>
+        </button>
+
+        <button mat-menu-item [matMenuTriggerFor]="notificationMenu" class="icn" (click)="getNotification()">
+          <i matBadge="{{notificationSize}}" matBadgeSize="medium" matBadgeColor="accent" class="fa fa-bell"
+            style="font-size:22px;" matTooltip="Notification"></i>
+        </button>
+
+        <mat-menu #notificationMenu="matMenu">
+          <div class="notification">
+            <button class="noti" mat-menu-item (click)="readAll()">Read All</button>
+            <button mat-menu-item *ngFor="let msg of notificationArray" (click)="readMsg(msg[0])"
+              [ngClass]="seenUnseen(msg[1])">
+              <p>{{msg[0]}}</p>
+            </button>
+          </div>
+        </mat-menu>
+
+        <button mat-menu-item class="icn" (click)="download()" matTooltip="Download Board">
+          <i class="fa fa-download" style="font-size:22px;"></i>
+        </button>
+        <button mat-menu-item class="icn" (click)="addColumn()" matTooltip="Add new Column">
+          <i class="fa fa-plus" style="font-size:22px;"></i>
+        </button>
+        <button mat-menu-item class="icn" (click)="shareBoard()" matTooltip="Share Board">
+          <i class="fa fa-share" style="font-size:22px;"></i>
+        </button>
+        <button *ngIf="!taskArchive" mat-menu-item class="icn" (click)="toggleArchive()" matTooltip="Open Archive">
+          <i class="fa fa-folder-open" style="font-size:22px;"></i>
+        </button>
+        <button *ngIf="taskArchive" mat-menu-item class="icn" (click)="toggleArchive()" matTooltip="Close Archive">
+          <i class="fa fa-folder" style="font-size:22px;"></i>
+        </button>
+      </mat-menu>
+
+    </div>
+
+    <div cdkDropListGroup class="kanban-main">
+      <div *ngFor="let columnName of getColumnNames()" class="example-container">
+        <div style="display: flex; justify-content: center;">
+          <h2 [contentEditable]="columnNameChangeable(columnName)" [spellcheck]="false"
+            (blur)="changeColumnName($event,columnName)">
+            {{columnName}}
+          </h2>
+          <mat-icon id="delCol"
+            *ngIf="columnName !== 'To Be Done' && columnName !== 'Work In Progress' && columnName !== 'Completed' "
+            (click)="editableCol()">edit</mat-icon>
+          <mat-icon id="delCol"
+            *ngIf="columnName !== 'To Be Done' && columnName !== 'Work In Progress' && columnName !== 'Completed' "
+            (click)="deleteColumn(columnName)">delete</mat-icon>
+        </div>
+
+        <div cdkDropList [cdkDropListData]="getColumnTasks(columnName)" class="example-list"
+          (cdkDropListDropped)="drop($event)">
+     
+          <ng-container *ngFor="let task of getColumnTasks(columnName)">
+            <ng-container *ngIf="getTaskVisibility(task.status)">
+              <div class="example-box" cdkDrag (cdkDragStarted)="onDragStart(task)">
+                <div *ngIf="getTaskStatus(task.status)" id="test">
+                  <mat-card [ngClass]="getColorClass(task.priority)">
+                    <mat-card-header class="container">
+                      <mat-card-title>{{task.name}}</mat-card-title>
+                      <div class="date-members">
+                        <div>
+                          <p *ngIf="task.createDate" id="createdate" matTooltip="Create date">
+                            {{task.createDate.slice(0,10)}}
+                          </p>
+                        </div>
+                        <div>
+                          <div class="box">
+                            <div class="icons">
+                              <div *ngFor="let name of task.members" class="icon">
+                                <div class="circle" matTooltip="{{name}}">{{name.charAt(0)}}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <div class="content">{{task.content}}</div>
+                    </mat-card-content>
+        
+                    <mat-card-actions class="change">
+                      <span>
+                        <span mat-icon-button id="priority" matTooltip="Priority : {{task.priority}}">
+                          <mat-icon class="picon" *ngIf="task.priority=='Urgent'" style="color: red;">flag</mat-icon>
+                          <mat-icon class="picon" *ngIf="task.priority=='High'"
+                            style="color: rgb(247, 226, 85);">flag</mat-icon>
+                          <mat-icon class="picon" *ngIf="task.priority=='Low'"
+                            style="color: rgb(168, 169, 168);">flag</mat-icon>
+                          <mat-icon class="picon" *ngIf="task.priority=='Normal'"
+                            style="color: rgb(84, 165, 211);">flag</mat-icon>
+                          <mat-icon class="picon" *ngIf="task.priority=='Clear' || task.priority==''">flag</mat-icon>
+                        </span>
+                      </span>
+
+                      <div class="calendar-icon" matTooltip="Due date : {{task.deadline.slice(0,10)}} ">
+                        <mat-icon [ngClass]="getSpanBackgroundColor(task.deadline, task)">calendar_today</mat-icon>
+                        <span class="date">{{load(task.deadline)}}</span>
+                      </div>
+
+
+
+
+                      <div class="circle1" matTooltip="Assigned by {{task.assignee}}">{{task.assignee.charAt(0)}}</div>
+            
+                      <div *ngIf='task.status!=="Archived"'>
+                        <mat-icon class="editTaskICON" matTooltip="Edit Task" (click)="editTask(task)">
+                          create
+                        </mat-icon>
+                      </div>
+                      <mat-icon
+                        *ngIf="(!taskArchive && currentUser == task.assignee)||(!taskArchive && columnName=='Completed')"
+                        id="delete" matTooltip="Delete Task" (click)="delete(columnName,task)">delete</mat-icon>
+                      <mat-icon
+                        *ngIf="(taskArchive && currentUser == task.assignee)||(taskArchive && columnName=='Completed')"
+                        id="delete" matTooltip="Restore Task"
+                        (click)="restore(columnName,task)">restore_from_trash</mat-icon>
+
+                    </mat-card-actions>
+
+                  </mat-card>
+                </div>
+              </div>
+              <div class="placeholder" *ngIf="!getTaskStatus(task.status)"></div>
+
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- </div> -->

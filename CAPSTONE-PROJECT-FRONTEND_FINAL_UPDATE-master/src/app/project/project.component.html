@@ -1,0 +1,84 @@
+<!-- <ngx-ui-loader
+fgsColor="#00ACC1" text="Hold On!!" pbColor="#00ACC1"
+>
+</ngx-ui-loader> -->
+
+<mat-card class="container">
+  <mat-dialog-actions >
+    <h2 *ngIf="edit" >Edit Project</h2>
+    <h2 *ngIf="!edit">Create Project</h2>
+    <div class="close-Button">
+      <button mat-button (click)="confirmWindow()"  matTooltip="Close" class="custom-icon">
+
+      <!-- <button mat-button mat-dialog-close (click)="confirmWindow()"  matTooltip="Close" class="custom-icon"> -->
+        <mat-icon >clear</mat-icon>
+      </button>
+    </div>
+  </mat-dialog-actions>
+ 
+
+
+      <form [formGroup]="projectForm">
+        <div class="projectNameCSS">
+          <mat-form-field appearance="outline" >
+            <input matInput placeholder="Name" formControlName="name">
+            <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+              <mat-error *ngIf="name?.hasError('required')">
+                  Project Name is required
+              </mat-error>
+              <mat-error *ngIf="name?.hasError('pattern')">
+                Project name should start with a character.
+               </mat-error>
+              </mat-error>
+          </mat-form-field>        
+        </div>
+  
+        <div class="membersCSS">
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Members" formControlName="memberName">
+          </mat-form-field>
+        </div>
+        <div class="cntr">
+        <button mat-raised-button color="primary" type="button" (click)="addMember()">Add Member</button>
+        </div>
+
+        <div class="button-row">
+          <div class="dynamicButton" *ngFor="let member of projectForm.get('members').value">
+            <div >
+              <button mat-raised-button color="primary" class="button-option icn">
+              {{member}}
+              </button>
+            </div>
+            <span *ngIf="hideCloseButtonUser(member)" class="closeButton-Member-Columns" (click)="removeMember(member)">
+              <mat-icon mat-badge="matBadgeContent" >close</mat-icon>
+            </span>
+          </div>
+        </div>
+        
+        <div class="columnCSS" *ngIf="!edit">
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Columns" formControlName="columnName">
+          </mat-form-field>
+        </div>
+          <div class="cntr" *ngIf="!edit">
+          <button mat-raised-button color="primary" type="button" (click)="addColumn()">Add Column</button>
+        </div>
+
+
+          <div class="button-row" *ngIf="!edit">
+            <div class="dynamicButton"  *ngFor="let column of projectForm.get('columns').value">
+              <div >
+                <button color="primary" mat-raised-button class="button-option icn">
+                  {{column}}
+                </button>
+              </div>
+              <span *ngIf="hideCloseButton(column)"  class="closeButton-Member-Columns"  (click)="removeColumn(column)">
+                <mat-icon mat-badge="matBadgeContent">close</mat-icon>
+              </span>
+            </div>
+          </div>
+    </form>
+    <button *ngIf="edit" class="btn" mat-dialog-close mat-raised-button color="primary" type="button" [disabled]="projectForm.invalid" (click)="addProject()">Save Edit</button>
+    <button *ngIf="!edit" class="btn" mat-dialog-close mat-raised-button color="primary" type="button" [disabled]="projectForm.invalid" (click)="addProject()">Create Project</button>
+
+</mat-card>

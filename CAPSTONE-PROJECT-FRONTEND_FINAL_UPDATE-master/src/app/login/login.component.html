@@ -1,0 +1,51 @@
+<ngx-ui-loader
+fgsColor="#00ACC1" text="Hold On!!" pbColor="#00ACC1"
+>
+</ngx-ui-loader>
+<body>
+  <img class="loginBackGroundImage" src="../../assets/loginImage.png" alt="">
+
+  <mat-card class="loginPanel">
+    <mat-card-header>
+      <mat-card-title>
+        Login
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="loginCustomer()" #formData="ngForm" spellcheck="false">
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="User Name" formControlName="userName">
+        </mat-form-field>
+        <div *ngIf="loginForm.controls.userName.dirty || loginForm.controls.userName.touched">
+          <p class="loginFormErrors" *ngIf="loginForm.get('userName').hasError('required') ">
+            <mat-icon>warning</mat-icon>UserName is Required
+          </p>
+        </div>
+        
+        <mat-form-field appearance="outline">
+          <span id="eyes" (click)="change()"><i class="fa {{eyeIcon}}"></i></span>
+          <input matInput [type]="type" placeholder="Password" formControlName="password">
+ 
+        </mat-form-field>
+        
+
+        <div *ngIf="loginForm.controls.password.dirty||loginForm.controls.password.touched">
+          <p class="loginFormErrors" *ngIf="loginForm.get('password').hasError('required')">
+            <mat-icon>warning</mat-icon>Password is required
+          </p>
+        </div>
+        <ng-container *ngIf="!loginStatus; else loginBlock">
+          <button class="login" [disabled]="formData.invalid" mat-raised-button color="accent" type="submit">Login</button>
+        </ng-container>
+        <ng-template #loginBlock>
+          <button mat-raised-button color="warn" type="button" (click)="logout()">Logout</button>
+        </ng-template>
+        <div class="register-Message">
+          <h3>Not a Registerd User ?</h3>
+          <button type="button" class="registerButton" mat-raised-button color="accent"
+            (click)="toRegisterPage()">Register</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</body>

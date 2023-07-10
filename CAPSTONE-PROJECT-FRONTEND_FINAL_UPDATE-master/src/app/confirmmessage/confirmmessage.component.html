@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-title *ngIf="confirmMsg==='prj'">Are you sure you want to leave the changes ?</mat-card-title>
+    <mat-card-title *ngIf="confirmMsg!=='prj'">Are you sure you want to delete this project ?</mat-card-title>
+<mat-card-actions>
+<div *ngIf="confirmMsg=='prj'">
+    <button mat-raised-button type="button" (click)="leave()">Yes</button>
+    <button mat-raised-button mat-dialog-close type="button">No</button>
+</div>
+<div *ngIf="confirmMsg!=='prj'">
+    <button mat-raised-button type="button"(click)="dlt()" mat-dialog-close>Yes</button>
+    <button mat-raised-button mat-dialog-close type="button">No</button>
+</div>
+</mat-card-actions>
+</mat-card>

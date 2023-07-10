@@ -1,0 +1,160 @@
+body{
+  padding-bottom: 80px;
+  background: linear-gradient(to right, #bdc3c7 , #2c3e50);
+
+}
+
+img{
+  position: fixed;
+  margin-top: 6%;
+
+  height: 80%;
+  width: 60%;
+
+    margin-left: 0%;
+    z-index: 0;
+  
+
+}
+
+.formField{
+  display: flex;
+}
+
+mat-card {
+  width: 40vw;
+  max-width: 70vw;
+  margin: auto;
+  margin-top: 5%;
+  position: relative;
+  margin-bottom: 6%;
+  /* background-image: linear-gradient(112.5deg, rgb(214, 214, 214) 0%, rgb(214, 214, 214) 10%, rgb(195, 195, 195) 10%, rgb(195, 195, 195) 53%, rgb(176, 176, 176) 53%, rgb(176, 176, 176) 55%, rgb(157, 157, 157) 55%, rgb(157, 157, 157) 60%, rgb(137, 137, 137) 60%, rgb(137, 137, 137) 88%, rgb(118, 118, 118) 88%, rgb(118, 118, 118) 91%, rgb(99, 99, 99) 91%, rgb(99, 99, 99) 100%), linear-gradient(157.5deg, rgb(214, 214, 214) 0%, rgb(214, 214, 214) 10%, rgb(195, 195, 195) 10%, rgb(195, 195, 195) 53%, rgb(176, 176, 176) 53%, rgb(176, 176, 176) 55%, rgb(157, 157, 157) 55%, rgb(157, 157, 157) 60%, rgb(137, 137, 137) 60%, rgb(137, 137, 137) 88%, rgb(118, 118, 118) 88%, rgb(118, 118, 118) 91%, rgb(99, 99, 99) 91%, rgb(99, 99, 99) 100%), linear-gradient(135deg, rgb(214, 214, 214) 0%, rgb(214, 214, 214) 10%, rgb(195, 195, 195) 10%, rgb(195, 195, 195) 53%, rgb(176, 176, 176) 53%, rgb(176, 176, 176) 55%, rgb(157, 157, 157) 55%, rgb(157, 157, 157) 60%, rgb(137, 137, 137) 60%, rgb(137, 137, 137) 88%, rgb(118, 118, 118) 88%, rgb(118, 118, 118) 91%, rgb(99, 99, 99) 91%, rgb(99, 99, 99) 100%), linear-gradient(90deg, rgb(195, 195, 195), rgb(228, 228, 228)); */
+  /* background-blend-mode: overlay, overlay, overlay, normal; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 0 15% 0 15%;
+  opacity: 0.90;
+  z-index: 2;
+  margin-left: 57%;
+
+}
+
+
+  mat-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: -15px;
+  }
+
+  mat-card-title {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    margin-top: 0px;
+    margin-left: -33%;
+    margin-right: 64px;
+  }
+
+  .example-card {
+    max-width: 80%;
+    margin-bottom: 8px;
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 300px;
+    width: 80%;
+  
+
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .errorCSS {
+    color: rgb(255, 64, 0);
+    font-size: 0.8rem;
+    margin: -5px 15px 20px 10px;
+  }
+
+  mat-icon {
+    margin-right: 8px;
+  }
+
+  #pswd {
+    margin-bottom: 16px;
+  }
+  
+  body {
+    display: block;
+    /* background: url(../../assets/682226.jpg) no-repeat center center fixed; */
+    /* background-image: repeating-linear-gradient(45deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px), repeating-linear-gradient(0deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px), repeating-linear-gradient(135deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px), repeating-linear-gradient(90deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px), linear-gradient(90deg, rgb(17, 17, 17), rgb(66, 66, 66)); */
+    /* background-size: cover !important; */
+    padding-top: 10px;
+  }
+  
+  button {
+    width: 80px;
+    margin: auto;
+  }
+
+  .registerButton{
+   margin-bottom: -10px; 
+  }
+
+
+@media only screen and (max-width: 768px) {
+  body {
+    padding-bottom: 77px;
+
+  }
+  img{
+    width: 100%;
+  }
+
+  mat-card {
+    height: 100%;
+    margin:auto;
+    margin-top: 13%;
+    width: 70%;
+    margin-bottom: 0px;
+    transform: scale(0.8);
+  
+  }
+
+  @media only screen and (max-width: 768px) {
+    body{
+      padding-bottom: 77px;
+      
+    }
+    img{
+      width: 100%;
+    }
+
+    mat-card{
+     margin:auto;
+     height: 95%;
+     margin-top: 13%;
+     width: 70%;
+     margin-bottom: 0px;
+     transform: scale(0.8);
+    }
+    mat-card-title {
+      margin-left: 0px;
+  
+    }
+    mat-card-header{
+      margin-top: -20px;
+    }
+  
+   button{
+    margin-bottom: 2px;
+   }
+
+  }
+}

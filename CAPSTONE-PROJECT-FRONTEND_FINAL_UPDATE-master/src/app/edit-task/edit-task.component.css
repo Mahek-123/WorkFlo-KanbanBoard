@@ -1,0 +1,116 @@
+mat-card{
+    width: 40vw;
+    background-color: #d6dcea;
+    background-image: linear-gradient(135deg,#a2bdec 25%, transparent 25%);
+}
+
+mat-form-field {
+    width: 90%;
+}
+
+.taskTitle{
+    margin-top: -20px;
+    margin-bottom: -5px;
+
+}
+.valid-forms{
+    margin-bottom: -5px;
+}
+
+
+.taskTitle{
+    margin-top: -20px;
+    margin-bottom: -5px;
+
+}
+.valid-forms{
+    margin-bottom: -5px;
+}
+
+form {
+    padding: 10px 10px;
+    text-align: center;
+}
+
+.icons-Assignee{
+    display: flex;
+    flex-direction: row;
+}
+
+.btn {
+    margin-top: 5vw;
+}
+
+mat-error {
+    margin-top: -11px;
+}
+
+h2{
+    text-align: center;
+    margin-right: 0px;
+    margin-left:-18%;
+    margin-top: 10px;
+}
+
+mat-dialog-actions {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+
+.addButton{
+    display: inline-block;
+    width: 30%;
+    margin:0px 150px;
+}
+.addButton:hover{
+    transform: scale(1.1);
+}
+
+mat-dialog-actions{
+    float: right;
+}
+.top{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+#assignedby{
+    float: right;
+    margin-top: 10px;
+}
+#prty{
+    display: inline;
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+
+.close-Button{
+    margin-right: -22%;  
+}
+
+@media only screen and (max-width: 768px) {
+    mat-card{
+        width: 80vw;
+        margin-right: 0px;
+        padding-right: 0px;
+        overflow: hidden;
+    }
+
+    h2{
+        margin-left:-5%;
+    }
+    .close-Button{
+        margin-right: -10%;  
+    }
+    .addButton{
+        margin:auto;
+        margin-top: 10px;
+        width: 150px;
+    }
+
+}

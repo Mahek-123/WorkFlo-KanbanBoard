@@ -1,0 +1,104 @@
+#icon {
+    color: white;
+    margin-top: -5px;
+    font-size: 26px;
+    margin-left: 10px;
+}
+
+.logoutIcon {
+    margin-right: 20px;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+    color: brown;
+}
+
+.header {
+    background-color: #333333;
+    /* background-image: repeating-linear-gradient(45deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px),
+        repeating-linear-gradient(0deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px),
+        repeating-linear-gradient(135deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px),
+        repeating-linear-gradient(90deg, hsla(207, 0%, 63%, 0.05) 0px, hsla(207, 0%, 63%, 0.05) 1px, transparent 1px, transparent 11px, hsla(207, 0%, 63%, 0.05) 11px, hsla(207, 0%, 63%, 0.05) 12px, transparent 12px, transparent 32px),
+        linear-gradient(90deg, rgb(17, 17, 17), rgb(66, 66, 66)); */
+  
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left:0px;
+    margin-right: 0%;
+}
+
+.navbar-brand {
+    /* margin: 0 15px; */
+    /* margin-left: -px; */
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.detailPanel{
+    margin-right: -12%;
+}
+
+.logo{
+    /* margin: 0 10px; */
+    height: 30px;
+    transform-style: preserve-3d;
+    animation: rotate 5s infinite linear;
+    /* margin-left: -20px; */
+}
+
+mat-menu {
+    margin-right: 0px;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotateY(0);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar-brand {
+        margin: 0 15px;
+        margin-left: -15px;
+        font-size: 2rem;
+
+    }   
+    
+.logo{
+    
+        margin-left: 0px;
+        margin-right: 50%;
+    }
+    
+
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+
+    .container{
+    
+        margin-right: 10%!important;
+    }
+  }
+  
+
+
+.noteIcon{
+    margin-top: 17px;
+    font-size: 27px;
+}
